@@ -568,6 +568,7 @@ Arquivos existentes em `DOCS/`:
 - `DRIZZLE_SCHEMA.md`
 - `SUPABASE_INFO_PROMPT.md`
 - `SPRINT_3.md`
+- `SPRINT_4.md`
 - `STATUS_SPRINT_3.md`
 
 Este arquivo complementa essa documentacao com uma visao consolidada do progresso.
