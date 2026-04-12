@@ -3,10 +3,15 @@ import { drizzle } from "drizzle-orm/postgres-js";
 
 import * as schema from "@/lib/db/schema";
 
-const connectionString = process.env.DATABASE_URL;
+const isProduction = process.env.NODE_ENV === "production";
+
+const connectionString =
+  !isProduction && process.env.DATABASE_LOCAL_URL
+    ? process.env.DATABASE_LOCAL_URL
+    : process.env.DATABASE_URL;
 
 if (!connectionString) {
-  throw new Error("DATABASE_URL is not configured.");
+  throw new Error("Database connection is not configured.");
 }
 
 const globalForDb = globalThis as typeof globalThis & {

@@ -63,12 +63,12 @@ export default async function CategoriesPage({
         color: String(formData.get("color") ?? "#94a3b8"),
         icon: String(formData.get("icon") ?? "").trim() || null,
       });
-
-      redirect("/categories?success=Categoria%20criada%20com%20sucesso.");
     } catch (error) {
       const message = error instanceof Error ? error.message : "Não foi possível criar a categoria.";
       redirect(`/categories?error=${encodeURIComponent(message)}`);
     }
+
+    redirect("/categories?success=Categoria%20criada%20com%20sucesso.");
   }
 
   async function updateCategoryFromForm(formData: FormData) {
@@ -82,12 +82,12 @@ export default async function CategoriesPage({
         icon: String(formData.get("icon") ?? "").trim() || null,
         isArchived: String(formData.get("isArchived") ?? "false") === "true",
       });
-
-      redirect("/categories?success=Categoria%20atualizada%20com%20sucesso.");
     } catch (error) {
       const message = error instanceof Error ? error.message : "Não foi possível atualizar a categoria.";
       redirect(`/categories?error=${encodeURIComponent(message)}`);
     }
+
+    redirect("/categories?success=Categoria%20atualizada%20com%20sucesso.");
   }
 
   async function toggleArchiveFromForm(formData: FormData) {
@@ -100,11 +100,12 @@ export default async function CategoriesPage({
       });
 
       revalidatePath("/categories");
-      redirect("/categories?success=Categoria%20atualizada%20com%20sucesso.");
     } catch (error) {
       const message = error instanceof Error ? error.message : "Não foi possível arquivar a categoria.";
       redirect(`/categories?error=${encodeURIComponent(message)}`);
     }
+
+    redirect("/categories?success=Categoria%20atualizada%20com%20sucesso.");
   }
 
   async function deleteCategoryFromForm(formData: FormData) {
@@ -114,12 +115,12 @@ export default async function CategoriesPage({
       await deleteCategory({
         id: String(formData.get("id") ?? ""),
       });
-
-      redirect("/categories?success=Categoria%20excluída%20com%20sucesso.");
     } catch (error) {
       const message = error instanceof Error ? error.message : "Não foi possível excluir a categoria.";
       redirect(`/categories?error=${encodeURIComponent(message)}`);
     }
+
+    redirect("/categories?success=Categoria%20excluída%20com%20sucesso.");
   }
 
   const sections = [
