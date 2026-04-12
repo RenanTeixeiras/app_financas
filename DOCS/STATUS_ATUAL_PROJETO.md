@@ -366,6 +366,135 @@ Motivo:
 
 ---
 
+## Sprint 3 - Lancamentos
+
+### Objetivos da Sprint 3
+
+1. implementar a listagem real de lancamentos
+2. criar formulario de criacao
+3. criar formulario de edicao
+4. permitir exclusao pela UI
+5. implementar filtros por mes, tipo e categoria
+6. adicionar busca por descricao
+7. garantir experiencia mobile-first
+
+### O que foi entregue no codigo
+
+#### Pagina real de lancamentos
+
+A rota `/entries` deixou de ser placeholder e passou a usar queries reais do banco, com:
+
+- cabecalho funcional
+- botao de novo lancamento
+- filtros via query string
+- mensagens visuais de erro e sucesso
+- estado vazio sem dados
+- estado vazio com filtros aplicados
+
+Arquivo:
+
+- `app/src/app/(app)/entries/page.tsx`
+
+#### Componentes de entries
+
+Foram criados os componentes base do modulo:
+
+- `entry-form.tsx`
+- `entry-filters.tsx`
+- `entry-list.tsx`
+- `entry-card.tsx`
+
+Arquivos:
+
+- `app/src/components/entries/entry-form.tsx`
+- `app/src/components/entries/entry-filters.tsx`
+- `app/src/components/entries/entry-list.tsx`
+- `app/src/components/entries/entry-card.tsx`
+
+#### Rotas de criacao e edicao
+
+Foram implementadas as rotas:
+
+- `/entries/new`
+- `/entries/[id]/edit`
+
+Com isso, o usuario passou a conseguir:
+
+- criar receita
+- criar despesa
+- editar lancamento existente
+- excluir lancamento pela tela de edicao
+
+Arquivos:
+
+- `app/src/app/(app)/entries/new/page.tsx`
+- `app/src/app/(app)/entries/[id]/edit/page.tsx`
+
+#### Filtros funcionais
+
+Filtros implementados:
+
+- mes
+- tipo
+- categoria
+- busca por descricao
+
+Foi adicionada a conversao de `month` para intervalo real `start/end` antes da consulta no banco.
+
+#### Campo monetario amigavel
+
+Foi implementado um campo de valor amigavel em reais, com:
+
+- formatacao durante digitacao
+- conversao para `amountCents`
+- preenchimento correto na edicao
+
+Arquivos:
+
+- `app/src/lib/utils/currency.ts`
+- `app/src/components/entries/entry-form.tsx`
+
+#### Utilitarios de data
+
+Foram adicionados utilitarios para:
+
+- calcular intervalo do mes selecionado
+- formatar datas da listagem
+
+Arquivo:
+
+- `app/src/lib/utils/date.ts`
+
+#### Ajuste de conexao local com banco
+
+Foi introduzida a variavel `DATABASE_LOCAL_URL` para estabilizar o runtime local em ambiente com problema de IPv6 na conexao direta do Supabase.
+
+Regra aplicada:
+
+- desenvolvimento local prioriza `DATABASE_LOCAL_URL`
+- producao continua usando `DATABASE_URL`
+- migrations continuam usando `DATABASE_MIGRATE_URL`
+
+Arquivos:
+
+- `app/src/lib/db/client.ts`
+- `app/.env.example`
+
+#### Correcao do fluxo de redirect
+
+Foi corrigido o problema em que `redirect()` era capturado pelo `try/catch` e aparecia como erro `NEXT_REDIRECT` na UI.
+
+Esse ajuste foi aplicado em:
+
+- fluxo de `entries`
+- fluxo de `categories`
+
+### Status da Sprint 3
+
+- **Sprint 3 fechada com sucesso**
+
+---
+
 ## Estado Atual do Banco
 
 Banco Supabase neste momento:
@@ -390,7 +519,11 @@ Hoje o app ja possui:
 - protecao server-side das rotas privadas
 - dashboard base
 - pagina de categorias funcional
-- pagina de lancamentos ainda placeholder visual
+- pagina de lancamentos funcional com dados reais
+- criacao de lancamentos
+- edicao de lancamentos
+- exclusao de lancamentos pela tela de edicao
+- filtros por mes, tipo, categoria e descricao
 - pagina de relatorios placeholder visual
 - pagina de ajustes placeholder visual
 
@@ -399,14 +532,6 @@ Hoje o app ja possui:
 ## O Que Ainda Nao Foi Feito
 
 Itens principais que ainda faltam:
-
-### Sprint 3
-
-- formulario de lancamentos
-- listagem real de lancamentos
-- edicao de lancamentos
-- exclusao pela UI
-- filtros por mes, tipo e categoria
 
 ### Sprint 4
 
@@ -443,6 +568,7 @@ Arquivos existentes em `DOCS/`:
 - `DRIZZLE_SCHEMA.md`
 - `SUPABASE_INFO_PROMPT.md`
 - `SPRINT_3.md`
+- `STATUS_SPRINT_3.md`
 
 Este arquivo complementa essa documentacao com uma visao consolidada do progresso.
 
@@ -456,9 +582,10 @@ Situacao atual do projeto:
 - stack consolidada
 - Sprint 1 concluida
 - Sprint 2 concluida
+- Sprint 3 concluida
 - banco real provisionado no Supabase
 - autenticacao funcionando no codigo
 - categorias funcionando no codigo e no banco
-- base pronta para a execucao da Sprint 3
+- lancamentos funcionando no codigo, na UI e no banco
 
-Em resumo, o projeto saiu da fase de planejamento e infraestrutura e entrou na fase de implementacao funcional do produto.
+Em resumo, o projeto saiu da fase de planejamento e infraestrutura e entrou na fase de implementacao funcional real do produto, com o modulo de lancamentos operacional.
