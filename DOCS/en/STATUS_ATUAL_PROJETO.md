@@ -4,7 +4,7 @@
 
 This document summarizes everything completed so far in the `app_financas` project, which technical decisions were applied, what is already ready in the code and in the database, and the current state of the product.
 
-The goal is to leave a clear record of the accumulated progress after the completion of Sprint 3 and the planning of Sprint 4.
+The goal is to leave a clear record of the accumulated progress in the project, consolidating what is already implemented in code and in the database up to the current moment.
 
 ---
 
@@ -517,44 +517,34 @@ Today the app already has:
 - magic-link login
 - authentication callback
 - server-side protection for private routes
-- base dashboard
+- real monthly dashboard backed by database data
 - functional categories page
 - functional entries page backed by real data
 - entry creation
 - entry editing
 - entry deletion from the edit screen
 - month, type, category, and description filters
-- reports page still as a visual placeholder
+- monthly summary cards on the dashboard
+- recent entries section on the dashboard
+- expense breakdown by category on the dashboard
+- income breakdown by category on the dashboard
+- functional reports page backed by real data
+- monthly trend in reports
+- analytical breakdowns in reports
+- loading states in the main private routes
 - settings page still as a visual placeholder
 
 ---
 
 ## What Has Not Been Done Yet
 
-Main remaining items:
+Main items that remain outside the completed MVP:
 
-### Sprint 4
-
-- real dashboard with database data
-- income and expense summary
-- net balance
-- recent entries
-- category breakdown
-
-### Sprint 5
-
-- more complete reports
-- better empty states
-- loading states
-- additional visual polish
-
-### Sprint 6
-
-- final PWA refinement
-- microinteractions
-- accessibility
-- final performance review
-- final deployment preparation
+- `service worker`
+- robust offline support
+- offline synchronization
+- export
+- complete `/settings`
 
 ---
 
@@ -569,7 +559,15 @@ Existing files in `DOCS/`:
 - `SUPABASE_INFO_PROMPT.md`
 - `SPRINT_3.md`
 - `SPRINT_4.md`
+- `SPRINT_5.md`
+- `SPRINT_6.md`
+- `IMPLEMENTATION_SPRINT_4.md`
+- `IMPLEMENTATION_SPRINT_5.md`
+- `IMPLEMENTATION_SPRINT_6.md`
 - `STATUS_SPRINT_3.md`
+- `STATUS_SPRINT_4.md`
+- `STATUS_SPRINT_5.md`
+- `STATUS_SPRINT_6.md`
 
 This file complements that documentation with a consolidated view of progress.
 
@@ -584,9 +582,15 @@ Current project situation:
 - Sprint 1 completed
 - Sprint 2 completed
 - Sprint 3 completed
+- Sprint 4 completed
+- Sprint 5 completed
+- Sprint 6 completed
 - real database provisioned on Supabase
 - authentication working in code
 - categories working in code and database
 - entries working in code, UI, and database
+- dashboard working in code, UI, and with real database data
+- reports working in code, UI, and with real database data
+- installable PWA configured
 
-In summary, the project has left the planning and infrastructure stage and entered the real functional implementation stage of the product, with the entries module operational.
+In summary, the project has left the planning and infrastructure stage and reached a finalized MVP state, with the entries, dashboard, and reports modules operational and with installable mobile experience.

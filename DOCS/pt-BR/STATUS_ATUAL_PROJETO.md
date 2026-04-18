@@ -4,7 +4,7 @@
 
 Este documento resume tudo o que foi feito ate agora no projeto `app_financas`, quais decisoes tecnicas foram aplicadas, o que ja esta pronto no codigo e no banco, e qual e o estado atual do produto.
 
-O objetivo e deixar um registro claro do progresso acumulado antes da execucao da Sprint 3.
+O objetivo e deixar um registro claro do progresso acumulado no projeto, consolidando o que ja foi implementado no codigo e no banco ate o momento atual.
 
 ---
 
@@ -517,44 +517,34 @@ Hoje o app ja possui:
 - login com magic link
 - callback de autenticacao
 - protecao server-side das rotas privadas
-- dashboard base
+- dashboard mensal real com dados do banco
 - pagina de categorias funcional
 - pagina de lancamentos funcional com dados reais
 - criacao de lancamentos
 - edicao de lancamentos
 - exclusao de lancamentos pela tela de edicao
 - filtros por mes, tipo, categoria e descricao
-- pagina de relatorios placeholder visual
+- cards de resumo mensal no dashboard
+- ultimos lancamentos no dashboard
+- breakdown de despesas por categoria no dashboard
+- breakdown de receitas por categoria no dashboard
+- pagina de relatorios funcional com dados reais
+- tendencia mensal em relatorios
+- breakdowns analiticos em relatorios
+- loading states nas principais rotas privadas
 - pagina de ajustes placeholder visual
 
 ---
 
 ## O Que Ainda Nao Foi Feito
 
-Itens principais que ainda faltam:
+Itens principais que continuam fora do MVP concluido:
 
-### Sprint 4
-
-- dashboard real com dados do banco
-- resumo de receitas e despesas
-- saldo liquido
-- ultimos lancamentos
-- breakdown por categoria
-
-### Sprint 5
-
-- relatorios mais completos
-- estados vazios melhores
-- loading states
-- polimento visual adicional
-
-### Sprint 6
-
-- refinamento final de PWA
-- microinteracoes
-- acessibilidade
-- performance final
-- preparacao de deploy final
+- `service worker`
+- offline robusto
+- sincronizacao offline
+- exportacao
+- `/settings` completo
 
 ---
 
@@ -569,7 +559,15 @@ Arquivos existentes em `DOCS/`:
 - `SUPABASE_INFO_PROMPT.md`
 - `SPRINT_3.md`
 - `SPRINT_4.md`
+- `SPRINT_5.md`
+- `SPRINT_6.md`
+- `IMPLEMENTACAO_SPRINT_4.md`
+- `IMPLEMENTACAO_SPRINT_5.md`
+- `IMPLEMENTACAO_SPRINT_6.md`
 - `STATUS_SPRINT_3.md`
+- `STATUS_SPRINT_4.md`
+- `STATUS_SPRINT_5.md`
+- `STATUS_SPRINT_6.md`
 
 Este arquivo complementa essa documentacao com uma visao consolidada do progresso.
 
@@ -584,9 +582,15 @@ Situacao atual do projeto:
 - Sprint 1 concluida
 - Sprint 2 concluida
 - Sprint 3 concluida
+- Sprint 4 concluida
+- Sprint 5 concluida
+- Sprint 6 concluida
 - banco real provisionado no Supabase
 - autenticacao funcionando no codigo
 - categorias funcionando no codigo e no banco
 - lancamentos funcionando no codigo, na UI e no banco
+- dashboard funcionando no codigo, na UI e com dados reais do banco
+- relatorios funcionando no codigo, na UI e com dados reais do banco
+- PWA instalavel configurado
 
-Em resumo, o projeto saiu da fase de planejamento e infraestrutura e entrou na fase de implementacao funcional real do produto, com o modulo de lancamentos operacional.
+Em resumo, o projeto saiu da fase de planejamento e infraestrutura e chegou a um estado de MVP finalizado, com os modulos de lancamentos, dashboard e relatorios operacionais e com experiencia instalavel no celular.

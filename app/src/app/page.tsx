@@ -5,12 +5,12 @@ import { appRoutes } from "@/lib/constants/routes";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-dvh w-full max-w-6xl flex-col justify-center px-4 py-12 md:px-6">
+    <main id="main-content" className="mx-auto flex min-h-dvh w-full max-w-6xl flex-col justify-center px-4 py-12 md:px-6">
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <section className="rounded-[2rem] border border-white/12 bg-white/7 p-8 shadow-[var(--shadow-glow)] backdrop-blur-xl md:p-12">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/8 px-4 py-2 text-sm text-[var(--text-muted)]">
             <Sparkles className="size-4 text-[var(--accent-primary)]" />
-            Sprint 1 iniciada
+            MVP em evolução
           </div>
 
           <div className="mt-8 max-w-3xl">
@@ -18,8 +18,8 @@ export default function Home() {
               Seu controle financeiro, lindo no desktop e impecável no celular.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--text-muted)] md:text-lg">
-              Base do produto pronta para um app premium de receitas e despesas, com visual
-              minimalista luxuoso, arquitetura simples e crescimento seguro para multiusuário.
+              Dashboard, lançamentos e categorias já funcionam com dados reais. Agora o produto avança
+              para uma leitura analítica mais completa, sem perder a velocidade do uso diário.
             </p>
           </div>
 
@@ -35,7 +35,7 @@ export default function Home() {
               href={appRoutes.dashboard}
               className="inline-flex items-center justify-center rounded-full border border-white/14 bg-white/6 px-6 py-3 text-sm font-medium text-[var(--text-primary)] transition hover:bg-white/10"
             >
-              Ver shell inicial
+              Ver app
             </Link>
           </div>
         </section>

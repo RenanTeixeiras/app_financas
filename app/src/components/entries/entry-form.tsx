@@ -119,6 +119,8 @@ export function EntryForm({ categories, action, submitLabel, initialValues }: En
             ref={categoryRef}
             name="categoryId"
             defaultValue={values.categoryId}
+            aria-invalid={Boolean(errors.categoryId)}
+            aria-describedby={errors.categoryId ? "entry-category-error" : undefined}
             onChange={() => {
               if (errors.categoryId) {
                 setErrors((current) => ({ ...current, categoryId: undefined }));
@@ -136,7 +138,11 @@ export function EntryForm({ categories, action, submitLabel, initialValues }: En
               </option>
             ))}
           </select>
-          {errors.categoryId ? <span className="text-xs text-rose-200">{errors.categoryId}</span> : null}
+          {errors.categoryId ? (
+            <span id="entry-category-error" className="text-xs text-rose-200">
+              {errors.categoryId}
+            </span>
+          ) : null}
         </label>
       </div>
 
@@ -146,6 +152,8 @@ export function EntryForm({ categories, action, submitLabel, initialValues }: En
           <input
             inputMode="numeric"
             value={amountInput}
+            aria-invalid={Boolean(errors.amount)}
+            aria-describedby={errors.amount ? "entry-amount-error" : undefined}
             onChange={(event) => {
               setAmountInput(formatCurrencyInput(event.target.value));
               if (errors.amount) {
@@ -157,7 +165,11 @@ export function EntryForm({ categories, action, submitLabel, initialValues }: En
               errors.amount ? "border-rose-400/30" : "border-white/12"
             }`}
           />
-          {errors.amount ? <span className="text-xs text-rose-200">{errors.amount}</span> : null}
+          {errors.amount ? (
+            <span id="entry-amount-error" className="text-xs text-rose-200">
+              {errors.amount}
+            </span>
+          ) : null}
         </label>
 
         <label className="grid gap-2 text-sm text-[var(--text-muted)]">

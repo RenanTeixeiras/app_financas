@@ -141,7 +141,7 @@ export default async function CategoriesPage({
   );
 
   return (
-    <div className="flex flex-1 flex-col gap-6">
+    <div id="main-content" className="flex flex-1 flex-col gap-6">
       <section className="rounded-[2rem] border border-white/12 bg-white/8 p-6 backdrop-blur-xl md:p-8">
         <h1 className="text-2xl font-semibold text-[var(--text-primary)] md:text-3xl">Categorias</h1>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--text-muted)]">

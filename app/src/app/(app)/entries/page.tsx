@@ -65,7 +65,7 @@ export default async function EntriesPage({
   const hasFilters = Boolean(filters.type || filters.categoryId || filters.query || params.month);
 
   return (
-    <div className="flex flex-1 flex-col gap-6">
+    <div id="main-content" className="flex flex-1 flex-col gap-6">
       <section className="rounded-[2rem] border border-white/12 bg-white/8 p-6 backdrop-blur-xl md:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div>

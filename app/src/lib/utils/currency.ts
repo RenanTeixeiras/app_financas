@@ -27,6 +27,15 @@ export function formatCurrencyFromCents(amountCents: number, locale = "pt-BR", c
   }).format(amountCents / 100);
 }
 
+export function formatCompactCurrencyFromCents(amountCents: number, locale = "pt-BR", currency = "BRL") {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(amountCents / 100);
+}
+
 export function formatCentsToInputValue(amountCents: number) {
   return (amountCents / 100).toLocaleString("pt-BR", {
     minimumFractionDigits: 2,

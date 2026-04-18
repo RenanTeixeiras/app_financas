@@ -24,7 +24,7 @@ export function Sidebar() {
         </div>
       </div>
 
-      <nav className="mt-8 flex flex-1 flex-col gap-2">
+      <nav aria-label="Navegação principal" className="mt-8 flex flex-1 flex-col gap-2">
         {items.map((item) => {
           const Icon = item.icon;
 
@@ -32,7 +32,7 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-[var(--text-muted)] transition hover:bg-white/8 hover:text-[var(--text-primary)]"
+              className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-[var(--text-muted)] transition hover:bg-white/8 hover:text-[var(--text-primary)] hover:translate-x-0.5"
             >
               <Icon className="size-4" />
               <span>{item.label}</span>
@@ -42,9 +42,9 @@ export function Sidebar() {
       </nav>
 
       <div className="rounded-2xl border border-white/10 bg-black/10 p-4">
-        <p className="text-sm font-medium text-[var(--text-primary)]">Sprint 1</p>
+        <p className="text-sm font-medium text-[var(--text-primary)]">MVP em construção</p>
         <p className="mt-1 text-sm text-[var(--text-muted)]">
-          Base pronta para tema, auth, schema e PWA.
+          Dashboard, lançamentos, categorias e relatórios já estão ativos. Agora o foco é o acabamento final.
         </p>
       </div>
     </aside>
