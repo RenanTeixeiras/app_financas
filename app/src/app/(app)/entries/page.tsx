@@ -26,6 +26,13 @@ function getMessage(params: { error?: string; success?: string }) {
   return null;
 }
 
+function emptyToUndefined(value?: string) {
+  if (value == null) return undefined;
+
+  const trimmed = value.trim();
+  return trimmed === "" ? undefined : trimmed;
+}
+
 export default async function EntriesPage({
   searchParams,
 }: {
@@ -35,12 +42,14 @@ export default async function EntriesPage({
   const params = await searchParams;
   const message = getMessage(params);
 
-  const parsedFilters = entryFiltersSchema.safeParse({
-    month: params.month,
-    type: params.type,
-    categoryId: params.categoryId,
-    query: params.query,
-  });
+  const normalizedParams = {
+  month: emptyToUndefined(params.month),
+  type: emptyToUndefined(params.type),
+  categoryId: emptyToUndefined(params.categoryId),
+  query: emptyToUndefined(params.query),
+};
+
+const parsedFilters = entryFiltersSchema.safeParse(normalizedParams);
 
   const currentMonth = parsedFilters.data?.month ?? getCurrentMonthValue();
   const monthRange = getMonthRange(currentMonth);
@@ -62,7 +71,9 @@ export default async function EntriesPage({
     listVisibleCategories(user.id),
   ]);
 
-  const hasFilters = Boolean(filters.type || filters.categoryId || filters.query || params.month);
+  const hasFilters = Boolean(
+  filters.type || filters.categoryId || filters.query || normalizedParams.month
+);
 
   return (
     <div id="main-content" className="flex flex-1 flex-col gap-6">

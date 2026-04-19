@@ -385,3 +385,17 @@ A Sprint 3 avancou o projeto da fase de infraestrutura pronta para a fase de uso
 O app agora ja permite registrar e revisar movimentacoes financeiras de forma pratica, usando banco real, regras reais e interface integrada ao restante da aplicacao.
 
 Esse passo prepara o terreno para as proximas etapas do MVP, especialmente dashboard e relatorios com dados reais.
+
+### Ajuste importante de robustez nos filtros
+
+Foi corrigido um caso em que parametros vazios na query string, como
+`type=`, `categoryId=` e `query=`, eram tratados como valores invalidos
+em vez de ausentes.
+
+Correcao aplicada:
+- normalizacao de strings vazias para `undefined` antes do `safeParse`
+- preservacao do `month` valido mesmo quando outros filtros vinham vazios
+- eliminacao de falso aviso de filtros invalidos em URLs legitimas
+
+Exemplo que passou a funcionar corretamente:
+`/entries?month=2026-05&type=&categoryId=&query=`
