@@ -536,6 +536,62 @@ Hoje o app ja possui:
 
 ---
 
+## Ajustes de robustez identificados em uso real
+
+Apos o app entrar em fase de teste real local e hospedado, alguns ajustes importantes foram aplicados para melhorar previsibilidade, deploy e confiabilidade do produto.
+
+### 1. Robustez no parsing de filtros em `entries`
+
+Foi corrigido um caso em que parametros vazios na query string, como:
+
+- `type=`
+- `categoryId=`
+- `query=`
+
+eram tratados como invalidos em vez de ausentes.
+
+Efeito anterior:
+- aviso indevido de filtros invalidos
+- perda de filtros validos como `month`
+- comportamento confuso na tela de lancamentos
+
+Solucao:
+- normalizacao de strings vazias para `undefined` antes da validacao com Zod
+
+### 2. Separacao mais clara entre ambiente local e producao
+
+Foi consolidado o uso de URLs diferentes para cenarios diferentes:
+
+- `DATABASE_LOCAL_URL` para runtime local
+- `DATABASE_URL` para runtime de producao
+- `DATABASE_MIGRATE_URL` para migrations
+
+Essa separacao reduziu problemas de conectividade e tornou o fluxo de desenvolvimento e deploy mais confiavel.
+
+### 3. Ajuste de auth entre localhost e ambiente hospedado
+
+Foi consolidada a configuracao do fluxo de magic link para suportar corretamente:
+
+- desenvolvimento local
+- ambiente hospedado no Vercel
+
+Isso exigiu coerencia entre:
+- `NEXT_PUBLIC_SITE_URL`
+- callback usada no codigo
+- `Site URL` do Supabase
+- `Redirect URLs` do Supabase
+
+### 4. Ajuste da conexao com Supabase em producao
+
+Foi identificado que a conexao direta do banco podia falhar em producao por resolucao de host.
+
+Solucao:
+- uso da string de conexao do pooler do Supabase no runtime hospedado
+
+### 5. Validacao pratica do PWA
+
+O app foi validado em uso real como PWA, incluindo instalacao no iPhone via Safari e abertura em modo standalone, respeitando o escopo definido de PWA sem offline robusto.
+
 ## O Que Ainda Nao Foi Feito
 
 Itens principais que continuam fora do MVP concluido:
@@ -547,6 +603,19 @@ Itens principais que continuam fora do MVP concluido:
 - `/settings` completo
 
 ---
+
+## Issues e ajustes finos ainda em aberto
+
+Mesmo com o MVP funcional completo e com deploy validado, ainda existem ajustes finos de UX e responsividade a corrigir ou revisar.
+
+Exemplos ja identificados:
+
+- refinamentos visuais em filtros e cards do dashboard
+- ajustes de responsividade em larguras intermediarias
+- melhorias de hierarquia visual em algumas telas
+- refinamentos no comportamento de componentes auxiliares em mobile
+
+Esses pontos nao bloqueiam o uso real do produto, mas fazem parte da etapa de polimento posterior ao MVP funcional.
 
 ## Documentacao Criada Ate Agora
 

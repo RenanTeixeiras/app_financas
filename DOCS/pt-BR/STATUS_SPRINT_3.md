@@ -399,3 +399,18 @@ Correcao aplicada:
 
 Exemplo que passou a funcionar corretamente:
 `/entries?month=2026-05&type=&categoryId=&query=`
+
+### Ajuste adicional de robustez em ambiente local
+
+Durante os testes reais do modulo de `entries`, tambem foi identificado um problema de conectividade com o banco em ambiente local.
+
+Causa:
+- a `DATABASE_URL` com conexao direta do Supabase podia falhar no ambiente local por resolucao de rede
+- isso gerava erro de acesso ao banco mesmo com a query correta
+
+Solucao aplicada:
+- uso de `DATABASE_LOCAL_URL` para runtime local
+- manutencao de `DATABASE_URL` para producao
+- manutencao de `DATABASE_MIGRATE_URL` separada para migrations
+
+Essa separacao reduziu variacao de comportamento entre ambiente local e ambiente hospedado e deixou o fluxo de desenvolvimento mais previsivel.

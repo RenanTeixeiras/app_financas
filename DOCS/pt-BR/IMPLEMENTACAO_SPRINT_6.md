@@ -128,6 +128,20 @@ Esses ajustes melhoraram a acessibilidade e reduziram custo de animacao no clien
 
 ### 8. As paginas principais passaram a suportar melhor o skip link
 
+### 9. Foi consolidada a configuracao de ambiente para login e deploy
+
+Durante os testes em producao e apos o deploy no Vercel, foram identificados ajustes necessarios fora da UI para garantir funcionamento correto do app em ambiente real.
+
+Ajustes consolidados:
+
+- configuracao correta de `NEXT_PUBLIC_SITE_URL` por ambiente
+- uso de redirect dinamico no magic link com base na URL ativa
+- revisao da `Site URL` e das `Redirect URLs` no painel do Supabase
+- uso da conexao via pooler do Supabase em producao para evitar falhas de resolucao de host
+- validacao pratica do fluxo de instalacao e uso do app como PWA no iPhone
+
+Esses ajustes nao mudaram a proposta da Sprint 6, mas foram importantes para transformar a implementacao em um fluxo realmente utilizavel fora do ambiente local.
+
 Arquivos alterados:
 
 - `app/src/app/page.tsx`

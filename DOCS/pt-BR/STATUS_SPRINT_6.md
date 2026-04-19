@@ -205,6 +205,44 @@ Mesmo com a Sprint 6 concluida, continuam fora do escopo definido:
 
 ---
 
+## Ajustes posteriores importantes apos o deploy
+
+Depois da conclusao tecnica da Sprint 6, foram encontrados e corrigidos alguns problemas reais de ambiente e execucao ao testar o app hospedado.
+
+### 1. Redirect incorreto no magic link
+
+Foi identificado um caso em que o magic link podia redirecionar para `localhost` em vez da URL publicada.
+
+Causa:
+- configuracao de ambiente e redirect precisavam estar coerentes entre codigo, Vercel e Supabase
+
+Ajustes aplicados:
+- configuracao correta de `NEXT_PUBLIC_SITE_URL`
+- revisao da `Site URL` no Supabase
+- manutencao das `Redirect URLs` para localhost e producao
+
+### 2. Falha de conexao com o banco em producao
+
+Foi identificado erro de resolucao de host ao usar a conexao direta do Supabase no ambiente hospedado.
+
+Causa:
+- a `DATABASE_URL` de producao estava apontando para a conexao direta
+- esse host falhava no ambiente de execucao hospedado
+
+Ajuste aplicado:
+- troca da conexao de runtime em producao para a string do pooler do Supabase
+
+### 3. Validacao pratica do PWA no iPhone
+
+Tambem foi validado o fluxo real de instalacao do app no iPhone.
+
+Resultado:
+- instalacao via Safari funcionando
+- abertura em modo standalone funcionando
+- experiencia de PWA coerente com o escopo definido da sprint
+
+Esses ajustes reforcaram que a Sprint 6 nao apenas fechou o MVP em codigo, mas tambem sustentou o uso real do app em ambiente publicado.
+
 ## Conclusao
 
 A Sprint 6 fechou o MVP do `app_financas` com foco em entrega e refinamento, sem abrir novas frentes de complexidade.
